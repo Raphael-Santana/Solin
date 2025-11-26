@@ -14,8 +14,8 @@ class OpenLibraryClient:
         return f"{self.covers_url}/id/{cover_id}-{size}.jpg"
     
     async def search_books(
-        self, 
-        query: str, 
+        self,
+        query: str,
         limit: int = 20,
         offset: int = 0,
         fields: Optional[str] = None
@@ -26,10 +26,11 @@ class OpenLibraryClient:
                 "q": query,
                 "limit": limit,
                 "offset": offset,
+                "language": "eng",  # Filter for English books
             }
             if fields:
                 params["fields"] = fields
-            
+
             response = await client.get(f"{self.base_url}/search.json", params=params)
             response.raise_for_status()
             return response.json()
@@ -52,8 +53,8 @@ class OpenLibraryClient:
             return response.json()
     
     async def get_books_by_subject(
-        self, 
-        subject: str, 
+        self,
+        subject: str,
         limit: int = 20,
         offset: int = 0
     ) -> Dict[str, Any]:
@@ -61,7 +62,7 @@ class OpenLibraryClient:
         async with httpx.AsyncClient() as client:
             response = await client.get(
                 f"{self.base_url}/subjects/{subject}.json",
-                params={"limit": limit, "offset": offset}
+                params={"limit": limit, "offset": offset, "language": "eng"}
             )
             response.raise_for_status()
             return response.json()

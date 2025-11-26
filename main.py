@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.interface.api.routes import auth, books, user_books
+from src.interface.api.routes import auth, books, user_books, comments
 from src.core.config import settings
 
 app = FastAPI(
@@ -20,6 +20,7 @@ app.add_middleware(
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
 app.include_router(books.router, prefix="/api/v1/books", tags=["Books"])
 app.include_router(user_books.router, prefix="/api/v1/user-books", tags=["User Books"])
+app.include_router(comments.router, prefix="/api/v1/comments", tags=["Comments"])
 
 @app.get("/")
 async def root():

@@ -46,6 +46,25 @@ class FavoriteResponse(BaseModel):
     id: int
     book_key: str
     added_at: datetime
-    
+
+    class Config:
+        from_attributes = True
+
+class CommentCreate(BaseModel):
+    book_key: str
+    content: str = Field(..., min_length=1, max_length=2000)
+
+class CommentUpdate(BaseModel):
+    content: str = Field(..., min_length=1, max_length=2000)
+
+class CommentResponse(BaseModel):
+    id: int
+    book_key: str
+    content: str
+    created_at: datetime
+    updated_at: datetime
+    user_id: int
+    username: str
+
     class Config:
         from_attributes = True
