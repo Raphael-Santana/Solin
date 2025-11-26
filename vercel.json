@@ -1,6 +1,6 @@
 {
-  "buildCommand": "uv sync",
   "installCommand": "uv sync",
+  "buildCommand": "uv sync && uv run uvicorn solin.main:app --host 0.0.0.0 --port 8000",
   "env": {
     "UV_SYSTEM_PYTHON": "1"
   }
