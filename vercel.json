@@ -1,0 +1,7 @@
+{
+  "buildCommand": "uv sync",
+  "installCommand": "uv sync",
+  "env": {
+    "UV_SYSTEM_PYTHON": "1"
+  }
+}
